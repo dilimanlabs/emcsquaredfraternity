@@ -26,6 +26,13 @@
 				<br>
 				<input type="submit">
 			</form>
+
+			{% for post in posts %}
+    		<div>
+        		<div>{{post.title}}</div>
+        		<pre>{{post.content}}</pre>
+    		</div>
+    		{% endfor %}
 		</div>
 		<div id="footer">
 		</div>

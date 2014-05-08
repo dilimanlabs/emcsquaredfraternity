@@ -25,7 +25,9 @@ class Handler(webapp2.RequestHandler):
 
 class MainHandler(Handler):
     def get(self):
-        self.render('new.html')
+        posts_query = BlogPost.query().order(-BlogPost.date)
+        posts = posts_query.fetch(10)
+        self.render('new.html', posts=posts)
 
     def post(self):
         post = BlogPost()
