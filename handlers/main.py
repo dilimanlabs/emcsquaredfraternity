@@ -27,9 +27,9 @@ class MainHandler(Handler):
         self.render('new.html')
 
     def post(self):
-        post = BlogPost()
-        post.populate(title=self.request.get('title'), content=self.request.get('content'))
-        post.put()
+        #post = BlogPost()
+        #post.populate(title=self.request.get('title'), content=self.request.get('content'))
+        #post.put()
         self.redirect('/')
 
 app = webapp2.WSGIApplication([
