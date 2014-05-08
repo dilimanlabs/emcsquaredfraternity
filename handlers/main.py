@@ -2,10 +2,10 @@ import os
 import webapp2
 import jinja2
 
-class BlogPost(ndb.Model):
-    title = ndb.StringProperty()
-    content = ndb.StringProperty(indexed=False)
-    date = ndb.DateTimeProperty(auto_add_now=True)
+#class BlogPost(ndb.Model):
+#    title = ndb.StringProperty()
+#    content = ndb.StringProperty(indexed=False)
+#    date = ndb.DateTimeProperty(auto_add_now=True)
 
 template_dir = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates'))
 #template_dir = os.path.join(os.path.dirname(__file__), 'templates')

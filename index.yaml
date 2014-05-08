@@ -1,6 +1,0 @@
-indexes:
-- kind: BlogPost
-  ancestor: yes
-  properties:
-  - name: date
-    direction: desc
