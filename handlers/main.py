@@ -2,13 +2,14 @@ import os
 import webapp2
 import jinja2
 
+from google.appengine.ext import ndb
+
 class BlogPost(ndb.Model):
     title = ndb.StringProperty()
     content = ndb.StringProperty(indexed=False)
     date = ndb.DateTimeProperty(auto_now_add=True)
 
 template_dir = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates'))
-#template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
 
 class Handler(webapp2.RequestHandler):
@@ -28,7 +29,8 @@ class MainHandler(Handler):
 
     def post(self):
         post = BlogPost()
-        post.populate(title=self.request.get('title'), content=self.request.get('content'))
+        post.title = self.request.get('title')
+        post.content = self.request.get('content')
         post.put()
         self.redirect('/')
 
