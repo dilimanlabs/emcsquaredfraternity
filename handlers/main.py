@@ -27,9 +27,9 @@ class MainHandler(Handler):
         self.render('new.html')
 
     def post(self):
-        title = self.request.get('title')
-        content = self.request.get('content')
-        post = BlogPost(title=title, content=content)
+        post = BlogPost()
+        post.title = self.request.get('title')
+        post.content = self.request.get('content')
         post.put()
         self.redirect('/')
 
