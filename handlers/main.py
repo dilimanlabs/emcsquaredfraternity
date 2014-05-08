@@ -2,6 +2,11 @@ import os
 import webapp2
 import jinja2
 
+class BlogPost(ndb.Model):
+    title = ndb.StringProperty()
+    content = ndb.StringProperty(indexed=False)
+    date = ndb.DateTimeProperty(auto_add_now=True)
+
 template_dir = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates'))
 #template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
@@ -22,9 +27,11 @@ class MainHandler(Handler):
         self.render('new.html')
 
     def post(self):
-        title = "You entered " + self.request.get('title') + " as a Title."
-        content = "And " + self.request.get('content') + " for the Content." 
-        self.render('new.html', title=title, content=content)
+        title = self.request.get('title')
+        content = self.request.get('content')
+        post = BlogPost(title=title, content=content)
+        post.put()
+        self.redirect('/')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
