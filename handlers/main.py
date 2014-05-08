@@ -28,8 +28,7 @@ class MainHandler(Handler):
 
     def post(self):
         post = BlogPost()
-        post.title = self.request.get('title')
-        post.content = self.request.get('content')
+        post.populate(title=self.request.get('title'), content=self.request.get('content'))
         post.put()
         self.redirect('/')
 
