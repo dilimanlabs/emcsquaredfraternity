@@ -22,8 +22,9 @@ class Handler(webapp2.RequestHandler):
 class MainHandler(Handler):
     def get(self):
         self.render('new.html')
-    def post(self):
-        self.render('new.html', title='short title', content='long text')
+
+    #def post(self):
+    #    self.render('new.html', title='short title', content='long text')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
