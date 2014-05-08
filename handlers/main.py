@@ -2,10 +2,10 @@ import os
 import webapp2
 import jinja2
 
-#class BlogPost(ndb.Model):
-#    title = ndb.StringProperty()
-#    content = ndb.StringProperty(indexed=False)
-#    date = ndb.DateTimeProperty(auto_add_now=True)
+class BlogPost(ndb.Model):
+    title = ndb.StringProperty()
+    content = ndb.StringProperty(indexed=False)
+    date = ndb.DateTimeProperty(auto_now_add=True)
 
 template_dir = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'templates'))
 #template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -27,9 +27,9 @@ class MainHandler(Handler):
         self.render('new.html')
 
     def post(self):
-        #post = BlogPost()
-        #post.populate(title=self.request.get('title'), content=self.request.get('content'))
-        #post.put()
+        post = BlogPost()
+        post.populate(title=self.request.get('title'), content=self.request.get('content'))
+        post.put()
         self.redirect('/')
 
 app = webapp2.WSGIApplication([
